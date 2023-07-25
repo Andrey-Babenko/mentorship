@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "auction-668c1": {
+      "hosting": {
+        "mentorship": [
+          "auction-668c1"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "auction-668c1"
+  }
+}
