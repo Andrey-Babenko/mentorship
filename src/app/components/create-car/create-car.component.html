@@ -1,0 +1,55 @@
+<form [formGroup]="carForm" (ngSubmit)="createCar()">
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Model</span>
+    </label>
+    <select class="select select-bordered" formControlName="modelId">
+      <option *ngFor="let item of carModels$ | async" [ngValue]="item.id">
+        {{ item.brandName }} - {{ item.modelName }}
+      </option>
+    </select>
+  </div>
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Car Type Code</span>
+    </label>
+    <input
+      type="text"
+      placeholder="Type here"
+      class="input input-bordered w-full max-w-xs"
+      formControlName="carTypeCd"
+    />
+  </div>
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Model Year</span>
+    </label>
+    <input
+      type="number"
+      placeholder="Type here"
+      class="input input-bordered w-full max-w-xs"
+      formControlName="modelYear"
+    />
+  </div>
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Color Code</span>
+    </label>
+    <input
+      type="text"
+      placeholder="Type here"
+      class="input input-bordered w-full max-w-xs"
+      formControlName="colorCd"
+    />
+  </div>
+  <div class="mt-6 flex items-center justify-start gap-x-6">
+    <button type="button" class="btn" (click)="reset()">Cancel</button>
+    <button [disabled]="carForm.invalid" type="submit" class="btn btn-primary">
+      <span *ngIf="!inProgress">Create</span>
+      <span
+        *ngIf="inProgress"
+        class="loading loading-spinner loading-sm"
+      ></span>
+    </button>
+  </div>
+</form>

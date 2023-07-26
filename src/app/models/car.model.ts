@@ -1,6 +1,6 @@
 export interface Car {
-  id: number;
-  modelId: number;
+  id: string;
+  modelId: string;
   carTypeCd: string;
   modelYear: number;
   colorCd: string;

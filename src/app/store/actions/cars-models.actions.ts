@@ -7,7 +7,7 @@ export const CarModelsActions = createActionGroup({
     'Load Car Models': emptyProps(),
     'Add Car Model': props<{ carModel: CarModel }>(),
     'Update Car Model': props<{ carModel: CarModel }>(),
-    'Delete Car Model': props<{ carModelId: number }>(),
+    'Delete Car Model': props<{ carModelId: string }>(),
   },
 });
 
@@ -17,6 +17,6 @@ export const CarModelsApiActions = createActionGroup({
     'Car Models Loaded Success': props<{ carModels: CarModel[] }>(),
     'Car Model Added Success': props<{ carModel: CarModel }>(),
     'Car Model Updated Success': props<{ carModel: CarModel }>(),
-    'Car Model Delete Success': props<{ carModelId: number }>(),
+    'Car Model Delete Success': props<{ carModelId: string }>(),
   },
 });

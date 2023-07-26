@@ -1,0 +1,20 @@
+<div class="overflow-x-auto">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Model Id</th>
+        <th>CarTypeCd</th>
+        <th>Model Year</th>
+        <th>ColorCd</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let car of cars$ | async" class="hover">
+        <td>{{ car.modelId }}</td>
+        <td>{{ car.carTypeCd }}</td>
+        <td>{{ car.modelYear }}</td>
+        <td>{{ car.colorCd }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -7,7 +7,7 @@ export const carsActions = createActionGroup({
         'Load Cars': emptyProps(),
         'Add Car': props<{car: Car}>(),
         'Update Car': props<{car: Car}>(),
-        'Delete Car': props<{carId: number}>(),
+        'Delete Car': props<{carId: string}>(),
     }
 })
 
@@ -17,6 +17,6 @@ export const carsApiActions = createActionGroup({
         'Cars Loaded Success': props<{cars: Car[]}>(),
         'Car Added Success': props<{car: Car}>(),
         'Car Updated Success': props<{car: Car}>(),
-        'Car Delete Success': props<{carId: number}>(),
+        'Car Delete Success': props<{carId: string}>(),
     }
 })
