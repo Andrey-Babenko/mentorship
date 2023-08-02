@@ -19,6 +19,7 @@ import { UserCreateComponent } from './components/user-create/user-create.compon
 import { UsersEffects } from './store/effects/users.effects';
 import { BidCreateComponent } from './components/bid-create/bid-create.component';
 import { BidsEffects } from './store/effects/bids.effects';
+import { BidsComponent } from './components/bids/bids.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { BidsEffects } from './store/effects/bids.effects';
     CarsComponent,
     UserCreateComponent,
     BidCreateComponent,
+    BidsComponent,
   ],
   imports: [
     BrowserModule,
