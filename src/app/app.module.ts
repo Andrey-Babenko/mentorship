@@ -17,6 +17,8 @@ import { CarsEffects } from './store/effects/cars.effects';
 import { CarModelsEffects } from './store/effects/car-models.effects';
 import { UserCreateComponent } from './components/user-create/user-create.component';
 import { UsersEffects } from './store/effects/users.effects';
+import { BidCreateComponent } from './components/bid-create/bid-create.component';
+import { BidsEffects } from './store/effects/bids.effects';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { UsersEffects } from './store/effects/users.effects';
     CreateCarComponent,
     CarsComponent,
     UserCreateComponent,
+    BidCreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,12 @@ import { UsersEffects } from './store/effects/users.effects';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     ReactiveFormsModule,
-    EffectsModule.forRoot([CarsEffects, CarModelsEffects, UsersEffects]),
+    EffectsModule.forRoot([
+      CarsEffects,
+      CarModelsEffects,
+      UsersEffects,
+      BidsEffects,
+    ]),
   ],
   providers: [],
   bootstrap: [AppComponent],

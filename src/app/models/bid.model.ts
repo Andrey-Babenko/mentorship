@@ -1,7 +1,8 @@
+import { CarModel } from './car-model.model';
 export interface Bid {
-  id: number;
+  id: string;
   date: string;
-  modelId: number;
-  beginPrice: number;
-  finalPrice: number;
+  modelId: CarModel['id'];
+  beginPrice: number | null;
+  finalPrice: number | null;
 }

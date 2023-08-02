@@ -28,8 +28,8 @@ export class UsersEffects {
       ofType(usersActions.createUser),
       exhaustMap((actions) =>
         this.usersService.add(actions.user).pipe(
-          map((_documentReference: DocumentReference) =>
-            usersApiActions.userCreatedSuccess({ user: actions.user })
+          map((documentReference: DocumentReference) =>
+            usersApiActions.userCreatedSuccess({ user: {...actions.user, id: documentReference.id}  })
           ),
           catchError((error) =>
             of(usersApiActions.userCreatedFailure({ error }))

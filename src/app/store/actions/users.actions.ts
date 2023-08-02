@@ -7,7 +7,7 @@ export const usersActions = createActionGroup({
     'Load Users': emptyProps(),
     'Create User': props<{ user: Omit<User, 'id'> }>(),
     'Update User': props<{ user: User }>(),
-    'Delete User': props<{ userId: number }>(),
+    'Delete User': props<{ userId: User['id'] }>(),
   },
 });
 
@@ -16,9 +16,9 @@ export const usersApiActions = createActionGroup({
   events: {
     'Users Loaded Success': props<{ users: User[] }>(),
     'Users Loaded Failure': props<{ error: any }>(),
-    'User Created Success': props<{ user: Omit<User, 'id'> }>(),
+    'User Created Success': props<{ user: User }>(),
     'User Created Failure': props<{ error: any }>(),
     'User Updated Success': props<{ user: User }>(),
-    'User Delete Success': props<{ userId: number }>(),
+    'User Delete Success': props<{ userId: User['id'] }>(),
   },
 });

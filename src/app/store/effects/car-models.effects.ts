@@ -33,9 +33,9 @@ export class CarModelsEffects {
       ofType(CarModelsActions.addCarModel),
       exhaustMap((actions) =>
         this.carModelsService.add(actions.carModel).pipe(
-          map((_documentReference: DocumentReference) =>
+          map((documentReference: DocumentReference) =>
             CarModelsApiActions.carModelAddedSuccess({
-              carModel: actions.carModel,
+              carModel: {...actions.carModel, id: documentReference.id}
             })
           ),
           catchError((error) =>

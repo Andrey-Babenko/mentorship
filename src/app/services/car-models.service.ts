@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collectionData, collection, addDoc } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collectionData,
+  collection,
+  addDoc,
+} from '@angular/fire/firestore';
 import { Observable, from } from 'rxjs';
 
 import { CarModel } from 'src/app/models/car-model.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CarModelsService {
   private carModelsCollection = collection(this.firestore, 'models');
@@ -20,5 +25,5 @@ export class CarModelsService {
     return from(addDoc(this.carModelsCollection, carModel));
   }
 
-  constructor(private firestore: Firestore) { }
+  constructor(private firestore: Firestore) {}
 }
