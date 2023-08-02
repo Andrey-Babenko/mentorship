@@ -1,0 +1,45 @@
+<form [formGroup]="userForm" (ngSubmit)="createUser()">
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Role Code</span>
+    </label>
+    <input
+      type="text"
+      placeholder="Type here"
+      class="input input-bordered w-full max-w-xs"
+      formControlName="roleCd"
+    />
+  </div>
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">First Name</span>
+    </label>
+    <input
+      type="text"
+      placeholder="Type here"
+      class="input input-bordered w-full max-w-xs"
+      formControlName="firstName"
+    />
+  </div>
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Last Name</span>
+    </label>
+    <input
+      type="text"
+      placeholder="Type here"
+      class="input input-bordered w-full max-w-xs"
+      formControlName="lastName"
+    />
+  </div>
+  <div class="mt-6 flex items-center justify-start gap-x-6">
+    <button type="button" class="btn" (click)="reset()">Cancel</button>
+    <button [disabled]="userForm.invalid" type="submit" class="btn btn-primary">
+      <span *ngIf="!inProgress">Create</span>
+      <span
+        *ngIf="inProgress"
+        class="loading loading-spinner loading-sm"
+      ></span>
+    </button>
+  </div>
+</form>

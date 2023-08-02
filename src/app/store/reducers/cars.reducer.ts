@@ -7,7 +7,7 @@ export const initialState: Car[] = [];
 export const carsReducer = createReducer(
   initialState,
   on(carsApiActions.carsLoadedSuccess, (_state, { cars }) => cars),
-  on(carsApiActions.carAddedSuccess, (state, { car }) => [...state, car]),
+  //on(carsApiActions.carAddedSuccess, (state, { car }) => [...state, car]),
   on(carsApiActions.carDeleteSuccess, (state, { carId }) =>
     state.filter((car) => car.id !== carId)
   ),
