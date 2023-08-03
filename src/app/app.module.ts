@@ -20,6 +20,7 @@ import { UsersEffects } from './store/effects/users.effects';
 import { BidCreateComponent } from './components/bid-create/bid-create.component';
 import { BidsEffects } from './store/effects/bids.effects';
 import { BidsComponent } from './components/bids/bids.component';
+import { ShowIfTodayDirective } from './directives/show-if-today.directive';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { BidsComponent } from './components/bids/bids.component';
     UserCreateComponent,
     BidCreateComponent,
     BidsComponent,
+    ShowIfTodayDirective,
   ],
   imports: [
     BrowserModule,
