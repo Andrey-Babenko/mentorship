@@ -21,6 +21,7 @@ import { BidCreateComponent } from './components/bid-create/bid-create.component
 import { BidsEffects } from './store/effects/bids.effects';
 import { BidsComponent } from './components/bids/bids.component';
 import { ShowIfTodayDirective } from './directives/show-if-today.directive';
+import { ShowIfNdaysLeftDirective } from './directives/show-if-ndays-left.directive';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ShowIfTodayDirective } from './directives/show-if-today.directive';
     BidCreateComponent,
     BidsComponent,
     ShowIfTodayDirective,
+    ShowIfNdaysLeftDirective,
   ],
   imports: [
     BrowserModule,

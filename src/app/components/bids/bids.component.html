@@ -1,22 +1,26 @@
 <div class="overflow-x-auto">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Model Id</th>
-          <th>Begin Price</th>
-          <th>Final Price</th>
-          <th>Date</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let bid of bids$ | async" class="hover">
-          <td>{{ bid.modelId }}</td>
-          <td>{{ bid.beginPrice }}</td>
-          <td>{{ bid.finalPrice }}</td>
-          <td>{{ bid.date }}</td>
-          <td><button *appShowIfToday="bid.date" class="btn btn-accent">Bid</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Model Id</th>
+        <th>Begin Price</th>
+        <th>Final Price</th>
+        <th>Date</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bid of bids$ | async" class="hover">
+        <td>{{ bid.modelId }}</td>
+        <td>{{ bid.beginPrice }}</td>
+        <td>{{ bid.finalPrice }}</td>
+        <td>
+          <span *appShowIfNdaysLeft="bid.date; n: 100">{{ bid.date }}</span>
+        </td>
+        <td>
+          <button *appShowIfToday="bid.date" class="btn btn-accent">Bid</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
