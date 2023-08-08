@@ -12,7 +12,7 @@ import {
 export class ShowIfNdaysLeftDirective implements OnInit {
   @Input('appShowIfNdaysLeft') date: string = '';
   @Input('appShowIfNdaysLeftN') diff: number = 0;
-  private today = new Date();
+  private todayTime = new Date().setHours(0,0,0,0);
 
   constructor(
     private templateRef: TemplateRef<any>,
@@ -21,7 +21,7 @@ export class ShowIfNdaysLeftDirective implements OnInit {
 
   ngOnInit(): void {
     const differenceInDays = Math.floor(
-      (new Date(this.date).getTime() - this.today.getTime()) /
+      (new Date(this.date).getTime() - this.todayTime) /
         (1000 * 60 * 60 * 24)
     );
 

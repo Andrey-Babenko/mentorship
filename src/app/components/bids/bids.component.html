@@ -15,10 +15,10 @@
         <td>{{ bid.beginPrice }}</td>
         <td>{{ bid.finalPrice }}</td>
         <td>
-          <span *appShowIfNdaysLeft="bid.date; n: 100">{{ bid.date }}</span>
+          <span *appShowIfNdaysLeft="bid.date; n: 0">{{ bid.date }}</span>
         </td>
         <td>
-          <button *appShowIfToday="bid.date" class="btn btn-accent">Bid</button>
+          <button *appShowIfToday="bid.date" class="btn btn-primary">Bid</button>
         </td>
       </tr>
     </tbody>
