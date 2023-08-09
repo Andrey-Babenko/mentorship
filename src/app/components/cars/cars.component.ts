@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Car } from 'src/app/models/car.model';
 import { carsPageActions } from 'src/app/store/actions/cars.actions';
 import { State } from 'src/app/store/reducers';
-import { selectCars } from 'src/app/store/selectors/cars.selectors';
+import { selectCarsWithCarModels } from 'src/app/store/selectors/cars.selectors';
 
 @Component({
   selector: 'app-cars',
@@ -19,6 +19,6 @@ export class CarsComponent {
 
   constructor() {
     this.store.dispatch(carsPageActions.enter());
-    this.cars$ = this.store.select(selectCars);
+    this.cars$ = this.store.select(selectCarsWithCarModels);
   }
 }

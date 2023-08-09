@@ -11,7 +11,7 @@ import {
 import { DocumentReference } from '@angular/fire/firestore';
 import { CarModelsService } from 'src/app/services/car-models.service';
 import { createCarPageActions, carsPageActions } from '../actions/cars.actions';
-import { createBidPageActions } from '../actions/bids.actions';
+import { bidsPageActions, createBidPageActions } from '../actions/bids.actions';
 
 @Injectable()
 export class CarModelsEffects {
@@ -21,7 +21,8 @@ export class CarModelsEffects {
         carModelsPageActions.enter,
         carsPageActions.enter,
         createCarPageActions.enter,
-        createBidPageActions.enter
+        createBidPageActions.enter,
+        bidsPageActions.enter,
       ),
       exhaustMap(() =>
         this.carModelsService.getAll().pipe(

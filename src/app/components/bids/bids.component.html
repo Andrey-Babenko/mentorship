@@ -2,7 +2,7 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Model Id</th>
+        <th>Model Name</th>
         <th>Begin Price</th>
         <th>Final Price</th>
         <th>Date</th>
@@ -11,7 +11,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let bid of bids$ | async" class="hover">
-        <td>{{ bid.modelId }}</td>
+        <td>{{ bid.modelFullName }}</td>
         <td>{{ bid.beginPrice }}</td>
         <td>{{ bid.finalPrice }}</td>
         <td>

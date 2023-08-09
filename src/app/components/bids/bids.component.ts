@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Bid } from 'src/app/models/bid.model';
 import { bidsPageActions } from 'src/app/store/actions/bids.actions';
 import { State } from 'src/app/store/reducers';
-import { selectBids } from 'src/app/store/selectors/bids.selectors';
+import { selectBidsWithCarModels } from 'src/app/store/selectors/bids.selectors';
 
 @Component({
   selector: 'app-bids',
@@ -19,6 +19,6 @@ export class BidsComponent {
 
   constructor() {
     this.store.dispatch(bidsPageActions.enter());
-    this.bids$ = this.store.select(selectBids);
+    this.bids$ = this.store.select(selectBidsWithCarModels);
   }
 }

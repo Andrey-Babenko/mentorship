@@ -2,7 +2,7 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Model Id</th>
+        <th>Model Name</th>
         <th>CarTypeCd</th>
         <th>Model Year</th>
         <th>ColorCd</th>
@@ -10,7 +10,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let car of cars$ | async" class="hover">
-        <td>{{ car.modelId }}</td>
+        <td>{{ car.modelFullName }}</td>
         <td>{{ car.carTypeCd }}</td>
         <td>{{ car.modelYear }}</td>
         <td>{{ car.colorCd }}</td>
