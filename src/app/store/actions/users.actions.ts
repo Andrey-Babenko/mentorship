@@ -1,11 +1,17 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { User } from 'src/app/models/user.model';
 
-export const usersActions = createActionGroup({
-  source: 'Users',
+export const usersPageActions = createActionGroup({
+  source: 'Users Page',
   events: {
-    'Load Users': emptyProps(),
-    'Create User': props<{ user: Omit<User, 'id'> }>(),
+    Enter: emptyProps(),
+  },
+});
+
+export const createUserPageActions = createActionGroup({
+  source: 'Create User Page',
+  events: {
+    'Create User Form Submitted': props<{ user: Omit<User, 'id'> }>(),
     'Update User': props<{ user: User }>(),
     'Delete User': props<{ userId: User['id'] }>(),
   },

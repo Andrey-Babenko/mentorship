@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, exhaustMap, catchError } from 'rxjs/operators';
+import { map, exhaustMap, catchError, concatMap } from 'rxjs/operators';
 
-import { usersActions, usersApiActions } from '../actions/users.actions';
+import {
+  usersPageActions,
+  usersApiActions,
+  createUserPageActions,
+} from '../actions/users.actions';
 import { UsersService } from 'src/app/services/users.service';
 import { DocumentReference } from '@angular/fire/firestore';
 
@@ -11,7 +15,7 @@ import { DocumentReference } from '@angular/fire/firestore';
 export class UsersEffects {
   loadUsers$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(usersActions.loadUsers),
+      ofType(usersPageActions.enter),
       exhaustMap(() =>
         this.usersService.getAll().pipe(
           map((users) => usersApiActions.usersLoadedSuccess({ users })),
@@ -25,11 +29,13 @@ export class UsersEffects {
 
   createUser$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(usersActions.createUser),
-      exhaustMap((actions) =>
+      ofType(createUserPageActions.createUserFormSubmitted),
+      concatMap((actions) =>
         this.usersService.add(actions.user).pipe(
           map((documentReference: DocumentReference) =>
-            usersApiActions.userCreatedSuccess({ user: {...actions.user, id: documentReference.id}  })
+            usersApiActions.userCreatedSuccess({
+              user: { ...actions.user, id: documentReference.id },
+            })
           ),
           catchError((error) =>
             of(usersApiActions.userCreatedFailure({ error }))

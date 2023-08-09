@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { usersActions } from 'src/app/store/actions/users.actions';
+import { createUserPageActions } from 'src/app/store/actions/users.actions';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/store/reducers';
 import { User } from 'src/app/models/user.model';
@@ -32,7 +32,9 @@ export class UserCreateComponent {
     if (this.userForm.invalid) return;
 
     this.store.dispatch(
-      usersActions.createUser({ user: this.userForm.value as Omit<User, 'id'> })
+      createUserPageActions.createUserFormSubmitted({
+        user: this.userForm.value as Omit<User, 'id'>,
+      })
     );
   }
 

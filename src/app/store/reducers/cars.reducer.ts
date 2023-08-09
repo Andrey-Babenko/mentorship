@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { Car } from 'src/app/models/car.model';
-import { carsActions, carsApiActions } from '../actions/cars.actions';
+import { carsApiActions } from '../actions/cars.actions';
 
 export const initialState: Car[] = [];
 

@@ -1,13 +1,20 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { Bid } from 'src/app/models/bid.model';
 
-export const bidsActions = createActionGroup({
-  source: 'Bids',
+export const bidsPageActions = createActionGroup({
+  source: 'Bids Page',
   events: {
-    'Load Bids': emptyProps(),
-    'Add Bid': props<{ bid: Omit<Bid, 'id'> }>(),
+    Enter: emptyProps(),
+  },
+});
+
+export const createBidPageActions = createActionGroup({
+  source: 'Create Bid Page',
+  events: {
+    Enter: emptyProps(),
+    'Create Bid Form Submitted': props<{ bid: Omit<Bid, 'id'> }>(),
     'Update Bid': props<{ bid: Bid }>(),
-    'Delete Bid': props<{ bidId: Bid['id']; }>(),
+    'Delete Bid': props<{ bidId: Bid['id'] }>(),
   },
 });
 
@@ -19,6 +26,6 @@ export const bidsApiActions = createActionGroup({
     'Bid Added Success': props<{ bid: Bid }>(),
     'Bid Added Failure': props<{ error: any }>(),
     'Bid Updated Success': props<{ bid: Bid }>(),
-    'Bid Delete Success': props<{ bidId: Bid['id']; }>(),
+    'Bid Delete Success': props<{ bidId: Bid['id'] }>(),
   },
 });

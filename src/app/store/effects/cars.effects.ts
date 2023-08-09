@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, exhaustMap, catchError } from 'rxjs/operators';
+import { map, exhaustMap, catchError, concatMap } from 'rxjs/operators';
 
-import { carsActions, carsApiActions } from '../actions/cars.actions';
+import {
+  carsPageActions,
+  carsApiActions,
+  createCarPageActions,
+} from '../actions/cars.actions';
 import { CarsService } from 'src/app/services/cars.service';
 import { DocumentReference } from '@angular/fire/firestore';
 
@@ -11,7 +15,7 @@ import { DocumentReference } from '@angular/fire/firestore';
 export class CarsEffects {
   loadCars$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(carsActions.loadCars),
+      ofType(carsPageActions.enter),
       exhaustMap(() =>
         this.carsService.getAll().pipe(
           map((cars) => carsApiActions.carsLoadedSuccess({ cars })),
@@ -23,11 +27,13 @@ export class CarsEffects {
 
   addCar$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(carsActions.addCar),
-      exhaustMap((actions) =>
+      ofType(createCarPageActions.createCarFormSubmmit),
+      concatMap((actions) =>
         this.carsService.add(actions.car).pipe(
           map((documentReference: DocumentReference) =>
-            carsApiActions.carAddedSuccess({ car: {...actions.car, id: documentReference.id} })
+            carsApiActions.carAddedSuccess({
+              car: { ...actions.car, id: documentReference.id },
+            })
           ),
           catchError((error) => of(carsApiActions.carAddedFailure({ error })))
         )

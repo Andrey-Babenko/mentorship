@@ -1,11 +1,18 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { Car } from 'src/app/models/car.model';
 
-export const carsActions = createActionGroup({
-  source: 'Cars',
+export const carsPageActions = createActionGroup({
+  source: 'Cars Page',
   events: {
-    'Load Cars': emptyProps(),
-    'Add Car': props<{ car: Omit<Car, 'id'> }>(),
+    Enter: emptyProps(),
+  },
+});
+
+export const createCarPageActions = createActionGroup({
+  source: 'Create Car Page',
+  events: {
+    Enter: emptyProps(),
+    'Create Car Form Submmit': props<{ car: Omit<Car, 'id'> }>(),
     'Update Car': props<{ car: Car }>(),
     'Delete Car': props<{ carId: Car['id'] }>(),
   },

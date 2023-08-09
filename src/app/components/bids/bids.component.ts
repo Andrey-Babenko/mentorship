@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { Bid } from 'src/app/models/bid.model';
-import { bidsActions } from 'src/app/store/actions/bids.actions';
+import { bidsPageActions } from 'src/app/store/actions/bids.actions';
 import { State } from 'src/app/store/reducers';
 import { selectBids } from 'src/app/store/selectors/bids.selectors';
 
@@ -18,7 +18,7 @@ export class BidsComponent {
   bids$: Observable<ReadonlyArray<Bid>>;
 
   constructor() {
-    this.store.dispatch(bidsActions.loadBids());
+    this.store.dispatch(bidsPageActions.enter());
     this.bids$ = this.store.select(selectBids);
   }
 }

@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { Bid } from 'src/app/models/bid.model';
-import { bidsActions, bidsApiActions } from '../actions/bids.actions';
+import { bidsApiActions } from '../actions/bids.actions';
 
 export const initialState: Bid[] = [];
 

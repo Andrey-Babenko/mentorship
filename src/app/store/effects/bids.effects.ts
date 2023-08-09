@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, exhaustMap, catchError } from 'rxjs/operators';
+import { map, exhaustMap, catchError, concatMap } from 'rxjs/operators';
 
-import { bidsActions, bidsApiActions } from '../actions/bids.actions';
+import { bidsPageActions, bidsApiActions, createBidPageActions } from '../actions/bids.actions';
 import { BidsService } from 'src/app/services/bids.service';
 import { DocumentReference } from '@angular/fire/firestore';
 
@@ -11,7 +11,7 @@ import { DocumentReference } from '@angular/fire/firestore';
 export class BidsEffects {
   loadBids$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(bidsActions.loadBids),
+      ofType(bidsPageActions.enter),
       exhaustMap(() =>
         this.bidsService.getAll().pipe(
           map((bids) => bidsApiActions.bidsLoadedSuccess({ bids })),
@@ -23,8 +23,8 @@ export class BidsEffects {
 
   addBid$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(bidsActions.addBid),
-      exhaustMap((actions) =>
+      ofType(createBidPageActions.createBidFormSubmitted),
+      concatMap((actions) =>
         this.bidsService.add(actions.bid).pipe(
           map((documentReference: DocumentReference) =>
             bidsApiActions.bidAddedSuccess({

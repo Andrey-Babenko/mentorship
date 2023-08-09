@@ -5,11 +5,10 @@ import { Observable } from 'rxjs';
 import { CarModel } from 'src/app/models/car-model.model';
 import { Car } from 'src/app/models/car.model';
 import { CarsService } from 'src/app/services/cars.service';
-import { carsActions } from 'src/app/store/actions/cars.actions';
+import { createCarPageActions } from 'src/app/store/actions/cars.actions';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/store/reducers';
 import { selectCarModels } from 'src/app/store/selectors/car-models.selectors';
-import { CarModelsActions } from 'src/app/store/actions/cars-models.actions';
 
 @Component({
   selector: 'app-create-car',
@@ -34,7 +33,7 @@ export class CreateCarComponent {
   inProgress = false;
 
   constructor() {
-    this.store.dispatch(CarModelsActions.loadCarModels());
+    this.store.dispatch(createCarPageActions.enter());
     this.carModels$ = this.store.select(selectCarModels);
   }
 
@@ -46,7 +45,9 @@ export class CreateCarComponent {
     //this.inProgress = true;
 
     this.store.dispatch(
-      carsActions.addCar({ car: this.carForm.value as Omit<Car, 'id'> })
+      createCarPageActions.createCarFormSubmmit({
+        car: this.carForm.value as Omit<Car, 'id'>,
+      })
     );
     // addDoc(this.carsCollection, this.carForm.value as Omit<Car, 'id'>)
     //   .then((_documentReference: DocumentReference) => {
