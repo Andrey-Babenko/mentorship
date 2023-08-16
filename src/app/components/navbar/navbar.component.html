@@ -1,5 +1,5 @@
 <div class="navbar mb-10 bg-base-100">
-  <div class="navbar-start">
+  <div class="flex-1">
     <a routerLink="/cars" class="btn btn-ghost normal-case text-xl">Cars</a>
     <a routerLink="/bids" class="btn btn-ghost normal-case text-xl">Bids</a>
     <a routerLink="/car/create" class="btn btn-ghost normal-case text-xl"
@@ -12,7 +12,7 @@
       >Create Bid</a
     >
   </div>
-  <div class="navbar-end">
+  <div class="flex-none">
     <button class="btn glass" *ngIf="!(isLoggedIn$ | async)" (click)="login()">
       Log In
     </button>

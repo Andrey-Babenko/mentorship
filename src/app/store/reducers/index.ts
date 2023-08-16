@@ -2,15 +2,15 @@ import { isDevMode } from '@angular/core';
 import {
   ActionReducer,
   ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
   MetaReducer,
 } from '@ngrx/store';
+import { localStorageSync } from 'ngrx-store-localstorage';
 
 import * as fromUsers from './users.reducer';
 import * as fromBids from './bids.reducer';
 import * as fromCarModels from './car-models.reducer';
 import * as fromCars from './cars.reducer';
+import { authFeatureKey } from 'src/app/auth/store/reducers/auth.reducer'
 
 import { Car } from 'src/app/models/car.model';
 import { CarModel } from 'src/app/models/car-model.model';
@@ -31,4 +31,13 @@ export const reducers: ActionReducerMap<State> = {
   users: fromUsers.usersReducer,
 };
 
-export const metaReducers: MetaReducer<State>[] = isDevMode() ? [] : [];
+function localStorageSyncReducer(reducer: ActionReducer<State>): ActionReducer<State> {
+  return localStorageSync({
+    keys: [
+      { [authFeatureKey]: ['user']},
+    ],
+    rehydrate: true,
+  })(reducer);
+}
+
+export const metaReducers: Array<MetaReducer<State, any>> = [localStorageSyncReducer];
