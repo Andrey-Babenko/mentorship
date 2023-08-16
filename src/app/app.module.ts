@@ -22,6 +22,8 @@ import { BidsEffects } from './store/effects/bids.effects';
 import { BidsComponent } from './components/bids/bids.component';
 import { ShowIfTodayDirective } from './directives/show-if-today.directive';
 import { ShowIfNdaysLeftDirective } from './directives/show-if-ndays-left.directive';
+import {AuthModule} from './auth/auth.module';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { ShowIfNdaysLeftDirective } from './directives/show-if-ndays-left.direct
     BidsComponent,
     ShowIfTodayDirective,
     ShowIfNdaysLeftDirective,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { ShowIfNdaysLeftDirective } from './directives/show-if-ndays-left.direct
       UsersEffects,
       BidsEffects,
     ]),
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
