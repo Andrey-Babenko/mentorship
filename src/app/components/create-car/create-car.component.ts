@@ -18,6 +18,9 @@ import { selectCarModels } from 'src/app/store/selectors/car-models.selectors';
 export class CreateCarComponent {
   private store: Store = inject(Store<State>);
   private fb = inject(FormBuilder);
+
+  currentYear = new Date().getFullYear();
+  minModelYear = 1950;
   // private carsService: CarsService = inject(CarsService);
 
   carModels$: Observable<ReadonlyArray<CarModel>>;
@@ -26,11 +29,22 @@ export class CreateCarComponent {
   carForm = this.fb.group({
     modelId: ['', Validators.required],
     carTypeCd: ['', Validators.required],
-    modelYear: [null, Validators.required],
+    modelYear: [
+      null,
+      [
+        Validators.required,
+        Validators.min(this.minModelYear),
+        Validators.max(this.currentYear),
+      ],
+    ],
     colorCd: ['', Validators.required],
   });
 
   inProgress = false;
+
+  get modelYear() {
+    return this.carForm.get('modelYear');
+  }
 
   constructor() {
     this.store.dispatch(createCarPageActions.enter());

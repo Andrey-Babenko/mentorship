@@ -38,8 +38,9 @@
       <input
         type="date"
         placeholder="Type here"
-        class="input input-bordered w-full max-w-xs"
+        class="input input-bordered  w-full max-w-xs"
         formControlName="date"
+        [ngClass]="{'input-error': date!.errors}"
       />
     </div>
     <div class="mt-6 flex items-center justify-start gap-x-6">
