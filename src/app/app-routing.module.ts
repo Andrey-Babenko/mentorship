@@ -27,6 +27,7 @@ const routes: Routes = [
     path: 'bids',
     component: BidsComponent,
   },
+  { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
   {
     path: '**',
     redirectTo: 'cars',
